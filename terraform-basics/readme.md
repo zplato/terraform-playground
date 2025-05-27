@@ -16,3 +16,19 @@ Two basic language elements:
   * `provisioner` - are used to run scripts on a local machine or remote resource. Are considered a last resort and should be used sparingly. 
 * **Arguments** - key-value pair used in blocks to specify infrastructure 
 
+--- 
+
+## Core Terraform Workflow 
+Core Terraform Workflow is the lifecycle of an end user using terraform to manage the state of their infrastructure. 
+The lifecycle can be defined as:
+* Write/Update - Utilize HCL to write the terraform configuration files 
+  * Initialize Working Directory - `terraform init` - download/install required plugins, initialize backend for storing state and downloads and installs modules
+* Plan - Create an execution plan, `terraform plan`. This command reads current state and compares it to new state. It makes recommendations and shows the delta of what will happen if we apply the plan
+* Apply - Apply the plan, with `terraform apply`. This asks for confirmation, executes proposed actions, updates state file and outputs any values specified in output blocks
+* Destroy - `terraform destroy` will destroy all resources in your current state 
+
+Best practices with terraform workflow:
+* CI/CD Pipeline - for automated testing and deployment of updated states 
+* Version Control - Utilize git or another vcs to manage versions update 
+* State Management Backup - Backup with remote backends such as S3 or Terraform cloud
+* Workspace Management - Manage multiple environments/workspaces for code reusability. 
