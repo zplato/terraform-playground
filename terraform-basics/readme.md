@@ -54,3 +54,13 @@ What is Terraform State?
 - `terraform import <resource_addr> <resource_id>` - to import an existing resource. 
 
 Utilize Terraform Workspaces to manage multiple states for different environments, in separate state files. Can easily switch between environments. 
+
+---
+
+## Terraform Errors and State Rollback
+Terraform has two ways of managing rollback
+* State - Utilize an older state file to apply (overwrite the exising one)
+* Code - Utilize version control (git) to roll back to an earlier version - revert to previous script
+
+HCP Terraform and other 3rd party tools provide rollback capabilities builtin 
+
