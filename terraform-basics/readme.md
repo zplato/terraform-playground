@@ -32,3 +32,25 @@ Best practices with terraform workflow:
 * Version Control - Utilize git or another vcs to manage versions update 
 * State Management Backup - Backup with remote backends such as S3 or Terraform cloud
 * Workspace Management - Manage multiple environments/workspaces for code reusability. 
+
+--- 
+
+## Terraform State Management 
+Terraform state is a critical component of IaC. It enables management and tracking of resources that have been provisioned.
+What is Terraform State?
+* information about the state of managed resources by terraform
+* Maps the defined configs to real-world resources
+* Uses the state to determine what actions are required to achieve desired state (old state vs new state)
+
+**Best Practices**:
+* Use separate state files for different environments 
+* Use Remote State Storage when possible
+* State files contain sensitive information - ensure encrypted at rest and in transit and never store them in vcs (git)
+
+**Useful Commands**:
+- `terraform state list` - to list current resources terraform is managing
+- `terraform state show <resource>` - to show current resource attributes 
+- `terraform state rm <resource>` - remove the resource from the terraform state without actually deleting the resource. If you run terraform apply afterward, terraform will try to create it. You will need to import it.
+- `terraform import <resource_addr> <resource_id>` - to import an existing resource. 
+
+Utilize Terraform Workspaces to manage multiple states for different environments, in separate state files. Can easily switch between environments. 
